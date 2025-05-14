@@ -15,10 +15,13 @@ app.get('/api/:path(*)', async (req, res) => {
   try {
     const targetURL = `https://sky.shiiyu.moe/api/${req.params.path}`;
     const response = await axios.get(targetURL, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0'
-      }
-    });
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+      'Accept': 'application/json',
+      'Referer': 'https://sky.shiiyu.moe/',
+      'Origin': 'https://sky.shiiyu.moe'
+    }
+  });
     res.json(response.data);
   } catch (err) {
     res.status(err.response?.status || 500).json({ error: err.message });
